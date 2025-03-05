@@ -282,4 +282,3 @@ class _ContactUsState extends State<ContactUs> {
     return regex.hasMatch(email);
   }
 }
-
