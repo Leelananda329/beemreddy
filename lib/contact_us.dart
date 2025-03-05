@@ -283,30 +283,3 @@ class _ContactUsState extends State<ContactUs> {
   }
 }
 
-class GmailService {
-  static Future<bool> sendEmail({
-    required String toEmail,
-    required String subject,
-    required String message,
-  }) async {
-    String username = "leelanandareddy988@gmail.com"; // Your Gmail ID
-    String password = Constants.appPossword; // Generated App Password
-
-    final smtpServer = gmail(username, password); // Gmail SMTP server
-
-    final messageToSend = Message()
-      ..from = Address(username, "Your Name")
-      ..recipients.add(toEmail) // Recipient
-      ..subject = subject
-      ..text = message;
-
-    try {
-      final sendReport = await send(messageToSend, smtpServer);
-      print("Email sent: ${sendReport.toString()}");
-      return true;
-    } catch (e) {
-      print("Failed to send email: $e");
-      return false;
-    }
-  }
-}
