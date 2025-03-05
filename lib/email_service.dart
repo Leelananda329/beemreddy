@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'constants.dart';
 
 class EmailService {
-  static  String apiKey = Constants.brevoApiKey; // Replace with your Brevo API Key
+  static  String apiKey = ""; // Replace with your Brevo API Key
 
   static Future<bool> sendEmail({
     required String recipientEmail,
