@@ -1,6 +1,7 @@
 import 'package:beems/contact_us.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'dart:js' as js;
 
 class CircleNetworkWidget extends StatelessWidget {
   const CircleNetworkWidget({super.key});
@@ -63,6 +64,9 @@ class CircleNetworkWidget extends StatelessWidget {
           child: ClipOval(
             child: GestureDetector(
               onTap: (){
+                final String secretKey = js.context['ENV_SECRET_KEY'] ?? 'default_value';
+
+                print("secretKey $secretKey");
                 showDialog(context: context, builder: (BuildContext ctx){
 
                   return AlertDialog(

@@ -2,9 +2,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'constants.dart';
-
+import 'dart:js' as js;
 class EmailService {
-  static  String apiKey = Constants.brevoApiKey; // Replace with your Brevo API Key
+  static  String apiKey = "Constants.brevoApiKey"; // Replace with your Brevo API Key
+
 
   static Future<bool> sendEmail({
     required String recipientEmail,
@@ -12,7 +13,9 @@ class EmailService {
     required String message
   }) async {
     const String brevoUrl = "https://api.brevo.com/v3/smtp/email";
+    final String secretKey = js.context['ENV_SECRET_KEY'] ?? 'default_value';
 
+    print("secretKey $secretKey");
     final response = await http.post(
       Uri.parse(brevoUrl),
       headers: {
