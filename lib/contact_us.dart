@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:beems/HomeScreen.dart';
 import 'package:beems/constants.dart';
 import 'package:beems/widget/CustomEditField.dart';
 import 'package:beems/widget/header_text.dart';
@@ -16,8 +17,9 @@ import 'package:mailer/smtp_server.dart';
 import 'email_service.dart';
 
 class ContactUs extends StatefulWidget {
-  const ContactUs({super.key});
+  const ContactUs({super.key, this.type});
 
+  final  String? type;
   @override
   State<ContactUs> createState() => _ContactUsState();
 }
@@ -40,72 +42,74 @@ class _ContactUsState extends State<ContactUs> {
           Expanded(
             // Ensures the column takes only necessary space
             flex: 1, // Assigns a smaller ratio
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const CustomePlaceholder("CONTACT WITH US"),
-                const HeaderText("Write a message or call anytime"),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.only(left: 34.0),
-                  child: const CustomePlaceholder("Visit office"),
-                ),
-                Row(
-                  children: [
-                    Image.asset('assets/images/gps.png', width: 24, height: 24),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                        child: const CustomText(
-                            "BeemReddy Insurance Services,H.No: 4-12-918,Auto Sai Nagar,Vanasthalipuram,Opp Rajadhani Hotel, Hyderabad, Telangana, 500070")),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Container(
-                  height: 1,
-                  color: Colors.black45,
-                ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.only(left: 34.0),
-                  child: const CustomePlaceholder("Phone"),
-                ),
-                Row(
-                  children: [
-                    Image.asset('assets/images/phone.png',
-                        color: Colors.green, width: 24, height: 24),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                        child: const CustomText(
-                            "9010414599 | 9392947599 | 9440367676")),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Container(
-                  height: 1,
-                  color: Colors.black45,
-                ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.only(left: 34.0),
-                  child: const CustomePlaceholder("Email"),
-                ),
-                Row(
-                  children: [
-                    Image.asset('assets/images/email.png',
-                        color: Colors.red, width: 24, height: 24),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Expanded(
-                        child: CustomText(
-                            "MBEEMREDDY@gmail.com | mbeemreddy@yahoo.com")),
-                  ],
-                ),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CustomePlaceholder("CONTACT WITH US"),
+                  const HeaderText("Write a message or call anytime"),
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 34.0),
+                    child: const CustomePlaceholder("Visit office"),
+                  ),
+                  Row(
+                    children: [
+                      Image.asset('assets/images/gps.png', width: 24, height: 24),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                          child: const CustomText(
+                              "BeemReddy Insurance Services,H.No: 4-12-918,Auto Sai Nagar,Vanasthalipuram,Opp Rajadhani Hotel, Hyderabad, Telangana, 500070")),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Container(
+                    height: 1,
+                    color: Colors.black45,
+                  ),
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 34.0),
+                    child: const CustomePlaceholder("Phone"),
+                  ),
+                  Row(
+                    children: [
+                      Image.asset('assets/images/phone.png',
+                          color: Colors.green, width: 24, height: 24),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                          child: const CustomText(
+                              "9010414599 | 9392947599 | 9440367676")),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Container(
+                    height: 1,
+                    color: Colors.black45,
+                  ),
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 34.0),
+                    child: const CustomePlaceholder("Email"),
+                  ),
+                  Row(
+                    children: [
+                      Image.asset('assets/images/email.png',
+                          color: Colors.red, width: 24, height: 24),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Expanded(
+                          child: CustomText(
+                              "MBEEMREDDY@gmail.com | mbeemreddy@yahoo.com")),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           const SizedBox(width: 50), // Added spacing
@@ -176,6 +180,7 @@ class _ContactUsState extends State<ContactUs> {
                                 subject: "Your Insurance Inquiry",
                                 message:
                                     " ${message} \n Thank you for reaching out to Beem Reddy Insurance Agency",
+
                               );
 
                               if (isSent) {
@@ -183,6 +188,9 @@ class _ContactUsState extends State<ContactUs> {
                                   _isLoading=false;
                                 });
                                 showMessage("Email sent successfully!");
+                                if(widget.type!=null) {
+                                  Navigator.of(context).pop();
+                                }
                               } else {
                                 showMessage("Failed to send email.");
                                 setState(() {

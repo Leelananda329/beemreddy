@@ -9,7 +9,7 @@ class EmailService {
   static Future<bool> sendEmail({
     required String recipientEmail,
     required String subject,
-    required String message,
+    required String message
   }) async {
     const String brevoUrl = "https://api.brevo.com/v3/smtp/email";
 

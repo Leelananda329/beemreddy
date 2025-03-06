@@ -2,6 +2,7 @@ import 'package:beems/widget/header_text.dart';
 import 'package:beems/widget/placeholder.dart';
 import 'package:beems/widget/text.dart';
 import 'package:flutter/material.dart';
+import 'circle_text_network.dart';
 import 'constants.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -84,15 +85,16 @@ class _HomescreenState extends State<HomeScreen> {
                 )
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
+            const Padding(
+              padding: EdgeInsets.all(20.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset("assets/images/insurance.png",),
-                  const SizedBox(width: 100),
-                  const Expanded( // Prevents overflow
+                  //Image.asset("assets/images/insurance.png",),
+                  CircleNetworkWidget(),
+                  SizedBox(width: 100),
+                  Expanded( // Prevents overflow
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start, // Align text left
                       children: [
