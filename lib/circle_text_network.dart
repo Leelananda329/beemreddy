@@ -66,7 +66,7 @@ class CircleNetworkWidget extends StatelessWidget {
               onTap: (){
                 final String secretKey = js.context['ENV_SECRET_KEY'] ?? 'default_value';
 
-                print("secretKey1 $secretKey");
+                print("secretKey $secretKey");
                 showDialog(context: context, builder: (BuildContext ctx){
 
                   return AlertDialog(
