@@ -1,37 +1,25 @@
-name: Deploy Flutter Web to GitHub Pages
-
-on:
-  push:
-    branches:
-      - master  # Change this if your main branch has a different name
-
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.16.0'  # Adjust to your Flutter version
+          flutter-version: "3.16.0"  # Use the correct version that supports Dart 3.5.1
+          cache: true  # Caches dependencies for faster builds
 
-      - name: Install dependencies
+      - name: Verify Flutter & Dart Version
+        run: |
+          flutter --version
+          dart --version
+
+      - name: Install Dependencies
         run: flutter pub get
 
-      - name: Build Flutter Web
-        run: |
-          flutter build web --release
-          sed -i 's/%BREVO_API%/${{ secrets.BREVO_API }}/g' build/web/index.html
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages  # Use a separate branch for GitHub Pages to keep master safe
-          folder: build/web
-          clean: true  # Ensures old files are removed
-
-      - name: Verify Deployment
-        run: echo "Deployment Successful! ✅"
+      - name: Print Secret (for debugging)
+        run: echo "Secret is set"
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
