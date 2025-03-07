@@ -15,6 +15,9 @@ class HomeScreen extends StatefulWidget {
 class _HomescreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    const String secretKey = String.fromEnvironment('ENV_SECRET_KEY', defaultValue: 'Not Found');
+    print("🔐 Retrieved Secret Key: $secretKey"); // Debug output // Debugging print
+
     return SingleChildScrollView(
       child:Column(
           crossAxisAlignment: CrossAxisAlignment.start, // Aligns content properly
