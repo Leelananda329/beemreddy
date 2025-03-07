@@ -10,10 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'Colors/color.dart';
-
-import 'package:mailer/mailer.dart';
-import 'package:mailer/smtp_server.dart';
-
 import 'email_service.dart';
 
 class ContactUs extends StatefulWidget {

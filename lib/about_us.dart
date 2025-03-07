@@ -4,7 +4,6 @@ import 'package:beems/widget/header_text.dart';
 import 'package:beems/widget/placeholder.dart';
 import 'package:beems/widget/text.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'Colors/color.dart';
 import 'constants.dart';
