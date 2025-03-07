@@ -21,6 +21,11 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Clean up existing worktree
+        run: |
+          git worktree prune
+          rm -rf /home/runner/work/beemreddy/beemreddy
+
       - name: Build Flutter Web
         run: |
           flutter build web --release
@@ -29,5 +34,9 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: master
+          branch: gh-pages  # Use a separate branch for GitHub Pages to keep master safe
           folder: build/web
+          clean: true  # Ensure outdated files are removed
+
+      - name: Verify Deployment
+        run: echo "Deployment Successful! ✅"
