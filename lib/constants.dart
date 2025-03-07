@@ -39,7 +39,7 @@ class Constants{
 
   static const String groupHealthInsuranceDec="Group's Health Insurance is an insurance policy provided to a group of employees or members working for a company or an organisation. Hence, it is also known as Employee Health Insurance. Here, the employer usually pays the entire premium to offer health insurance as an employee benefit.With this policy, employees can receive financial security during medical uncertainties, and employers can receive tax benefits on the paid premium. A Group Health Insurance Plan can also provide coverage for an employee’s family members (parents, spouse, dependent children).";
 
-  static const String brevoApiKey="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";
+  static const String brevoApiKey="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";
 
 
 }
