@@ -1,10 +1,11 @@
 import 'dart:convert';
+import 'package:beems/secret_key.dart';
 import 'package:http/http.dart' as http;
 
 import 'constants.dart';
 import 'dart:js' as js;
 class EmailService {
-  static  String apiKey = Constants.brevoApiKey; // Replace with your Brevo API Key
+  static  String apiKey = SecretKey.mailToken; // Replace with your Brevo API Key
 
 
   static Future<bool> sendEmail({
