@@ -3,10 +3,10 @@ name: Flutter CI
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -18,8 +18,8 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.16.0"  # Adjust version as needed
-          cache: true  # Cache dependencies for faster builds
+          flutter-version: "3.16.0"
+          cache: true
 
       - name: Verify Flutter & Dart Version
         run: |
@@ -29,12 +29,14 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
 
-      - name: Check if SECRET_KEY is set
+      - name: Debug Secret Key Before Build
         run: |
-          if [ -z "$SECRET_KEY" ]; then
-            echo "SECRET_KEY is not set!" && exit 1
-          else
-            echo "SECRET_KEY is set"
-          fi
+          echo "🔍 Using ENV_SECRET_KEY=${SECRET_KEY}"
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+
+      - name: Build Flutter Web with Secret
+        run: |
+          flutter build web --dart-define=ENV_SECRET_KEY="${SECRET_KEY}"
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
